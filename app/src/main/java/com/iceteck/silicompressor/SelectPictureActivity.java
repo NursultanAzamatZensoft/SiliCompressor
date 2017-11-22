@@ -238,14 +238,11 @@ public class SelectPictureActivity extends AppCompatActivity {
             }
 
         }else if (requestCode == RESQUEST_TAKE_VIDEO && resultCode == RESULT_OK){
-            if (data.getData() != null) {
                 //create destination directory
                 File f = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/" + getPackageName() + "/media/videos");
                 if (f.mkdirs() || f.isDirectory())
                     //compress and output new video specs
-                    new VideoCompressAsyncTask(this).execute(data.getData().toString(), f.getPath());
-
-            }
+                    new VideoCompressAsyncTask(this).execute(capturedUri.toString(), f.getPath());
         }
 
     }
